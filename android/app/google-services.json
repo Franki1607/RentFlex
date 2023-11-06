@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "756416253347",
+    "project_id": "rentflex-237738",
+    "storage_bucket": "rentflex-237738.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756416253347:android:02991d063bb47883821e16",
+        "android_client_info": {
+          "package_name": "com.findev.rent_flex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKxiGArbA1sIEPPwn_xE1XO24TBSXjcNI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
