@@ -6,14 +6,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:otp_text_field/otp_field.dart';
+import 'package:rent_flex/api/firebase/firebase_core.dart';
 import 'package:telephony/telephony.dart';
 
 import '../../../api/firebase/firebase_authentification.dart';
 import '../../../constants.dart';
 
+import '../../../models/user.dart' as mUser;
+
 class LoginController extends GetxController {
 
   final formKey = GlobalKey<FormBuilderState>();
+
+  final moreInfoFormKey = GlobalKey<FormBuilderState>();
 
   final otpFieldController = OtpFieldController();
 
@@ -43,15 +48,29 @@ class LoginController extends GetxController {
   
   void setPhone(String value) => phone.value = value;
 
-  final FirebaseAuthenfication _authHelper = FirebaseAuthenfication();
+  final FirebaseCore _authHelper = FirebaseCore.instance;
 
   final isLoading = false.obs;
 
   void setLoading(bool value) => isLoading.value = value;
 
+  final isSaveLoading = false.obs;
+
+  void setSaveLoading(bool value) => isLoading.value = value;
+
+  final isNewUser = false.obs;
+
+  void setNewUser(bool value) => isNewUser.value = value;
+
+  final imagePath = "".obs;
+
+  void setImagePath(String value) => imagePath.value = value;
+
   String verificationId = "";
 
   Telephony telephony = Telephony.instance;
+
+
 
 
 
@@ -83,6 +102,7 @@ class LoginController extends GetxController {
               title: 'Verification failed',
               message: 'Please try again',
               icon: Icon(Icons.error, color: Colors.red),
+              duration: Duration(seconds: 2),
             )
         );
       }, () {
@@ -91,6 +111,7 @@ class LoginController extends GetxController {
           title: 'Verification failed',
           message: 'The verification took too long, please try again',
           icon: Icon(Icons.error, color: Colors.red),
+          duration: Duration(seconds: 2),
         );
       });
     }
@@ -99,10 +120,15 @@ class LoginController extends GetxController {
   Future<void> verifyOtp() async {
     if (otpValue.value.length == 6) {
       await _authHelper.signInWithPhoneNumber(verificationId, otpValue.value)
-          .then((User? user) {
+          .then((User? user) async {
         if (user != null) {
-          Get.offNamed("/");
-          print("User is signed in!");
+          bool isUserExist = await _authHelper.isUserExist();
+          if (!isUserExist){
+            isNewUser.value = true;
+          }else{
+            Get.offNamed("/");
+            print("User is signed in!");
+          }
         } else {
           otpFieldController.clear();
           Get.showSnackbar(
@@ -110,10 +136,50 @@ class LoginController extends GetxController {
               title: "Log in failed",
               message: "Please try again",
               icon: Icon(Icons.error, color: Colors.red),
+              duration: Duration(seconds: 2),
             )
           );
         }
       });
+    }
+  }
+
+  Future <void> createUser() async {
+    isSaveLoading.value = true;
+    String firstName = moreInfoFormKey.currentState!.fields['firstName']!.value;
+    String lastName = moreInfoFormKey.currentState!.fields['lastName']!.value;
+    String email = moreInfoFormKey.currentState!.fields['email']!.value;
+    String role = moreInfoFormKey.currentState!.fields['role']!.value;
+    String photoUrl = "";
+    if (imagePath.value != ""){
+       photoUrl = await _authHelper.uploadImage(imagePath.value);
+    }
+    mUser.User user = mUser.User("", phone.value, email, firstName, lastName, photoUrl, role);
+
+    try{
+      bool userCreated =await _authHelper.createDBUser(user);
+
+      if(userCreated){
+        Get.offAllNamed("/");
+      }else{
+        isSaveLoading.value = false;
+        Get.showSnackbar(
+          GetSnackBar(
+            title: 'Error',
+            message: "Something went wrong please try again",
+            icon: Icon(Icons.error, color: Colors.red),
+            duration: Duration(seconds: 2),
+          )
+        );
+      }
+    }catch(e){
+      isSaveLoading.value = false;
+      Get.showSnackbar(GetSnackBar(
+        title: 'Error',
+        message: "Something went wrong please try again",
+        icon: Icon(Icons.error, color: Colors.red),
+        duration: Duration(seconds: 2),
+      ));
     }
   }
 

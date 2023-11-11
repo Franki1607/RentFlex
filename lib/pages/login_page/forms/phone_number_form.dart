@@ -22,16 +22,13 @@ class PhoneNumberForm extends GetWidget<LoginController> {
         priorityListByIsoCode: ['BJ'],
         validator: FormBuilderValidators.compose(
           [
-            FormBuilderValidators.required(errorText: "Phone number is required"),
-            // Write your custom validator here using PhoneNumberUtil to validate phone number
+            FormBuilderValidators.required(errorText: "phone_number_required".tr),
             (value) {
-              // check if number has 8 digits
               if (value!.length != 8) {
-                return 'Please enter a valid phone number';
+                return 'enter_valid_phone_number'.tr;
               }
-              // check if number starts with number in mtnPrefixList
               if (!mtnPrefixList.contains(int.parse(value.substring(0, 2)))) {
-                return 'Only MTN numbers are allowed';
+                return 'only_mtn_numbers_are_allowed'.tr;
               }
               return null;
             }
