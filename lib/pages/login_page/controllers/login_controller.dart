@@ -126,7 +126,7 @@ class LoginController extends GetxController {
           if (!isUserExist){
             isNewUser.value = true;
           }else{
-            Get.offNamed("/");
+            Get.offAllNamed("/");
             print("User is signed in!");
           }
         } else {

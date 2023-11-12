@@ -270,22 +270,22 @@ class OnboardingPage extends GetWidget<OnboardingController> {
                           controller.currentPage.value == 2
                               ? Align(
                             alignment: FractionalOffset.bottomRight,
-                            child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  elevation: 0.0,
-                                  primary: Colors.transparent,
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: defaultPadding, right: defaultPadding, left: defaultPadding),
+                              child: Container(
+                                height: 50.0,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: primaryColor,
                                 ),
-                                onPressed: () {
-                                  Get.toNamed('/login');
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(bottom: 20.0),
-                                  child: Container(
-                                    height: 50.0,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      color: primaryColor,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      elevation: 0.0,
+                                      primary: Colors.transparent,
                                     ),
+                                    onPressed: () {
+                                      Get.toNamed('/login');
+                                    },
                                     child: Center(
                                         child: Text(
                                           "next".tr,
@@ -294,9 +294,9 @@ class OnboardingPage extends GetWidget<OnboardingController> {
                                               fontSize: 17.0,
                                               fontWeight: FontWeight.w400,
                                               letterSpacing: 1.5),
-                                        )),
-                                  ),
-                                )),
+                                        ))),
+                              ),
+                            ),
                           )
                               : Text(''),
                         ],
