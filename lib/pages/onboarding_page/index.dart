@@ -66,7 +66,7 @@ class OnboardingPage extends GetWidget<OnboardingController> {
                                           children: <Widget>[
                                             Image(
                                               image: NetworkImage(
-                                                  'https://res.cloudinary.com/dfng74ru6/image/upload/v1699694159/onbording1_etps6f.png'),
+                                                  'https://res.cloudinary.com/dfng74ru6/image/upload/v1700059410/step1_fjb6iw.png'),
                                               width: double.infinity,
                                               fit: BoxFit.cover,
                                             ),
@@ -129,7 +129,7 @@ class OnboardingPage extends GetWidget<OnboardingController> {
                                           children: <Widget>[
                                             Image(
                                               image: NetworkImage(
-                                                  'https://res.cloudinary.com/dfng74ru6/image/upload/v1699694159/onbording2_pyl2eq.png'),
+                                                  'https://res.cloudinary.com/dfng74ru6/image/upload/v1700059410/step2_schz43.png'),
                                               width: double.infinity,
                                               fit: BoxFit.cover,
                                             ),
@@ -190,7 +190,7 @@ class OnboardingPage extends GetWidget<OnboardingController> {
                                           children: <Widget>[
                                             Image(
                                               image: NetworkImage(
-                                                  'https://res.cloudinary.com/dfng74ru6/image/upload/v1699694159/onbording3_yh4gcz.png'),
+                                                  'https://res.cloudinary.com/dfng74ru6/image/upload/v1700059410/step3_clftzs.png'),
                                               width: double.infinity,
                                               fit: BoxFit.cover,
                                             ),

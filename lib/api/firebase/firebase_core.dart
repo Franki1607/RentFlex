@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rent_flex/api/firebase/firebase_config.dart';
+import '../../models/property.dart';
 import '../../models/user.dart' as mUser;
 import 'package:firebase_storage/firebase_storage.dart';
 
@@ -20,6 +21,7 @@ class FirebaseCore {
 
   FirebaseConfig config = FirebaseConfig(
     userCollection: 'users',
+    propertyCollection: 'properties',
   );
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -142,6 +144,70 @@ class FirebaseCore {
         message: "Can not upload image",
       ));
       print('Tcho envoie le fichier non!!!!!!!');
+      throw e;
+    }
+  }
+
+  //properties Crud
+
+  Future<bool> createProperty(Property property) async {
+    //property.uid = firebaseUser!.uid;
+    try {
+      await getFirebaseFirestore()
+          .collection("properties")
+          .doc(property.uid)
+          .set(property.toJson());
+      return true;
+    }catch(e){
+      print(e);
+      throw e;
+    }
+  }
+
+  Future<bool> deleteProperty(String uid) async {
+    try {
+      await getFirebaseFirestore()
+          .collection(config.propertyCollection)
+          .doc(firebaseUser?.uid)
+          .collection("properties")
+          .doc(uid)
+          .delete();
+      return true;
+    }catch(e){
+      print(e);
+      throw e;
+    }
+  }
+
+  Future<bool> updateProperty(Property property) async {
+    try {
+      await getFirebaseFirestore()
+          .collection(config.propertyCollection)
+          .doc(firebaseUser?.uid)
+          .collection("properties")
+          .doc(property.uid)
+          .update(property.toJson());
+      return true;
+    }catch(e){
+      print(e);
+      throw e;
+    }
+  }
+
+  Stream<List<Property>> getAllPropertiesStream() {
+    try {
+      Stream<QuerySnapshot> querySnapshotStream = getFirebaseFirestore()
+          .collection("properties").where("ownerId", isEqualTo: firebaseUser?.uid)
+          .snapshots();
+      return querySnapshotStream.map((querySnapshot) {
+        List<Property> properties = [];
+        querySnapshot.docs.forEach((doc) {
+          properties.add(Property.fromJson(doc.data() as Map<String, dynamic>));
+        });
+        return properties;
+      });
+    } catch (e) {
+      print(e);
       throw e;
     }
   }

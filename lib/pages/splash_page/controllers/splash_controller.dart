@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:rent_flex/api/firebase/firebase_core.dart';
 
 class SplashController extends GetxController{
   final isInSplashScreen = false.obs;
@@ -14,8 +15,11 @@ class SplashController extends GetxController{
     setIsInSplashScreen(true);
     Future.delayed(Duration(seconds: 5), () {
       initLocale();
-      // Get.offNamed('/onboarding');
-      Get.offNamed('/');
+      if (FirebaseCore.instance.firebaseUser != null){
+        Get.offAllNamed('/');
+      }else
+        Get.offNamed('/onboarding');
+      // Get.offNamed('/');
     });
     setIsInSplashScreen(false);
   }

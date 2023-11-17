@@ -14,7 +14,7 @@ class InitAndRegister{
     );
     await FirebaseAppCheck.instance.activate();
 
-    await FirebaseAuth.instance.signOut();
+    //await FirebaseAuth.instance.signOut();
   }
 
 }
