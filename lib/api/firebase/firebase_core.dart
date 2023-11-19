@@ -72,6 +72,7 @@ class FirebaseCore {
         title: 'Invalid code',
         message: 'Please try again',
         icon: Icon(Icons.error, color: Colors.red),
+        duration: Duration(seconds: 2),
       ));
       return null;
     }

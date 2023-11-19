@@ -1,5 +1,9 @@
 import 'package:get/get.dart';
+import 'package:rent_flex/pages/contracts_page/controllers/contracts_binding.dart';
+import 'package:rent_flex/pages/contracts_page/index.dart';
 import 'package:rent_flex/pages/dashboard_page/controllers/dashboard_binding.dart';
+import 'package:rent_flex/pages/estates_page/controllers/estates_binding.dart';
+import 'package:rent_flex/pages/estates_page/index.dart';
 import 'package:rent_flex/pages/login_page/controllers/login_binding.dart';
 import 'package:rent_flex/pages/login_page/index.dart';
 import 'package:rent_flex/pages/marketplace_page/controllers/marketplace_binding.dart';
@@ -27,6 +31,13 @@ class AppRouter {
     GetPage(
         name: "/login", page: () => LoginPage(), binding: LoginBinding()
     ),
+    GetPage(
+        name: "/estates", page: ()=> EstatesPage(), binding: EstatesBinding()
+    ),
+    GetPage(
+        name: "/contracts", page: ()=> ContractsPage(), binding: ContractsBinding()
+    ),
+
 
   ];
 }

@@ -1,5 +1,6 @@
 const en_US = {
-  'welcome': 'Welcome to SwiftStarter',
+  'welcome': 'Welcome to Rent Flex',
+  'sponsored_by': 'Sponsored by',
   'english': 'English',
   'french': 'Français',
   "skip": "Skip",
@@ -90,5 +91,15 @@ const en_US = {
   "numberOfBathrooms": "Number of bathrooms",
   "numberOfBathrooms_required": "Number of bathrooms required",
   "numberOfBathrooms_hint": "4",
-
+  "rent_for": "Rent for the month of ",
+  "sold": "Sold",
+  "paid": "Paid",
+  "invoice": "Invoices",
+  "gestion": "Gestion",
+  "manage": "Settings",
+  "late_paiements": "Late paiements",
+  "see_all": "See all",
+  "estates": "Estates",
+  "contracts": "Contracts",
+  "add_property": "Add property",
 };

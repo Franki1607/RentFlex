@@ -1,3 +1,5 @@
+import 'contract.dart';
+
 class Property{
   String uid;
   String ownerId;
@@ -18,6 +20,9 @@ class Property{
   int? numberOfFloors;
   String other;
   List <String> photos;
+  List <Contract>? contracts;
+  DateTime? createdAt;
+  DateTime? updatedAt;
 
   Property({
     required this.uid,
@@ -39,6 +44,9 @@ class Property{
     this.numberOfGarages,
     required this.other,
     required this.photos,
+    this.contracts,
+    this.createdAt,
+    this.updatedAt
   });
 
   factory Property.fromJson(Map<String, dynamic> json) {
@@ -62,6 +70,9 @@ class Property{
       numberOfFloors: json['numberOfFloors']?? 0,
       other: json['other'],
       photos: List<String>.from(json['photos']),
+      contracts: json['contracts'] != null ? List<Contract>.from(json['contracts'].map((x) => Contract.fromJson(x))) : null,
+      createdAt: json['createdAt'] != null ? json['createdAt'].toDate(): null,
+      updatedAt: json['updatedAt'] != null ? json['updatedAt'].toDate(): null
     );
   }
 
@@ -87,6 +98,9 @@ class Property{
       'numberOfGarages': numberOfGarages?? 0,
       'other': other,
       'photos': photos,
+      'contracts': contracts,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt
     };
   }
 

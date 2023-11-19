@@ -1,3 +1,4 @@
+import 'package:bootstrap_icons/bootstrap_icons.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:flutter/material.dart';
@@ -21,16 +22,15 @@ class DashboardPage extends GetWidget<DashboardController> {
                 children: [
                   Image.asset("images/background.png"),
 
-
                   Padding(
                     padding: const EdgeInsets.only(
-                        left: 10.0, right: 10.0, top: 170.0, bottom: 30.0),
+                        left: defaultPadding/2, right: defaultPadding/2, top: 140.0, bottom: defaultPadding),
                     child: CarouselSlider(
                       options: CarouselOptions(
                         aspectRatio: 5 / 10,
                         autoPlay: true,
                         viewportFraction: 1.0,
-                        height: 220.0,
+                        height: 200.0,
                       ),
                       items: [0, 1, 2, 3, 4].map((i) {
                         return Builder(
@@ -40,14 +40,18 @@ class DashboardPage extends GetWidget<DashboardController> {
                               child: Stack(
                                 children: <Widget>[
                                   Container(
-                                    height: 220.0,
+                                    height: 180.0,
                                     width: double.infinity,
                                     decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [Color(0xFF31A1C9), Color(0xFF3DB6D4)],
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.2),
+                                          spreadRadius: 1,
+                                          blurRadius: 5,
+                                          offset: Offset(0, 5),
+                                        ),
+                                      ],
+                                      color: Colors.white,
                                       borderRadius: BorderRadius.all(Radius.circular(defaultRadius*2)),
                                     ),
                                     child: Padding(
@@ -57,7 +61,7 @@ class DashboardPage extends GetWidget<DashboardController> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
                                           SizedBox(
-                                            height: 30.0,
+                                            height: defaultHeight,
                                           ),
                                           Text(
                                             "Immeuble Midombo",
@@ -66,57 +70,53 @@ class DashboardPage extends GetWidget<DashboardController> {
                                             ),
                                           ),
                                           SizedBox(
-                                            height: 30.0,
+                                            height: defaultHeight,
+                                          ),
+                                          Text(
+                                            "sold".tr,
+                                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                                fontSize: 12
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: defaultHeight/2,
                                           ),
                                           Text(
                                             "1000 / 45000 FCFA",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w700,
-                                                fontFamily: "Sans",
-                                                fontSize: 20.0),
+                                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                              color: Color(0xFF1F1F1F),
+                                            ),
                                           ),
                                           SizedBox(
-                                            height: 20.0,
-                                          ),
-                                          LinearProgressIndicator(
-                                            value: 0.5,
-                                            backgroundColor: Colors.white,
-                                            minHeight: 10,
+                                            height: defaultHeight,
                                           ),
                                           Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: <Widget>[
+                                            children: [
                                               Text(
-                                                "Jipau Dev",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontFamily: "Sans",
-                                                  fontSize: 18.0,
-                                                ),
+                                                "rent_for".tr,
+                                                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                                  fontSize: 12
+                                                )
                                               ),
-                                              Column(
-                                                children: <Widget>[
-                                                  Text(
-                                                    "Date",
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight: FontWeight.w300,
-                                                      fontFamily: "Sans",
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    "07/21",
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight: FontWeight.w600,
-                                                        fontFamily: "Sans",
-                                                        fontSize: 16.0),
-                                                  )
-                                                ],
+                                              Text(
+                                                "50 %",
+                                                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                                  fontSize: 12,
+                                                  color: Colors.red
+                                                )
                                               ),
+
                                             ],
+                                          ),
+                                          SizedBox(
+                                            height: defaultHeight/2,
+                                          ),
+                                          LinearProgressIndicator(
+                                            borderRadius: BorderRadius.all(Radius.circular(defaultRadius)),
+                                            value: 0.5,
+                                            backgroundColor: Color(0xFFF1F1F1),
+                                            minHeight: defaultHeight/2,
                                           ),
                                         ],
                                       ),
@@ -144,20 +144,19 @@ class DashboardPage extends GetWidget<DashboardController> {
                   ),
 
                   Padding(
-                      padding: EdgeInsets.only(top: 72.0, left: 22.0),
+                      padding: EdgeInsets.only(top: defaultPadding*3, left: defaultPadding),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Container(
-                            height: 53.0,
-                            width: 53.0,
+                            height: defaultPadding*2.5,
+                            width: defaultPadding*2.5,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.all(Radius.circular(100.0)),
                                 border: Border.all(color: Colors.white, width: 2.0),
                                 image: DecorationImage(
-                                    image: NetworkImage(
-                                        "https://images.pexels.com/photos/4091205/pexels-photo-4091205.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"),
+                                    image: NetworkImage("https://res.cloudinary.com/dfng74ru6/image/upload/v1700353755/blank-profile_jitnpg.png"),
                                     fit: BoxFit.cover)),
                           ),
                           SizedBox(
@@ -168,30 +167,228 @@ class DashboardPage extends GetWidget<DashboardController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                "Kathleen Walker",
-                                style: TextStyle(
-                                    fontFamily: "Sofia",
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 17.0,
-                                    color: Colors.white),
+                                "Y'ello",
                               ),
-                              Text(
-                                "Member Since 18 2016",
-                                style: TextStyle(
-                                    fontFamily: "Sans",
-                                    fontWeight: FontWeight.w300,
-                                    color: Colors.white54),
-                              )
+                              Container(
+                                width: 250,
+                                child: Text(
+                                  "Gerald",
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 17.0,
+                                      color: Colors.white),
+                                ),
+                              ),
                             ],
                           )
                         ],
                       )
                   ),
+
+
                 ]
-              )
+              ),
+
+
+              Padding(
+                padding: const EdgeInsets.only(left: defaultPadding, right: defaultPadding, bottom: defaultPadding),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Color(0xFFfef4ce),
+                          radius: 25,
+                          child: Container(
+                            height: 60,
+                            width: 60,
+                            child: Icon(
+                              BootstrapIcons.cash_stack,
+                              color: Colors.black54,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: defaultPadding/4),
+                          child: Text("paid".tr),
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Color(0xFFfef4ce),
+                          radius: 25,
+                          child: Container(
+                            height: 60,
+                            width: 60,
+                            child: Icon(
+                              BootstrapIcons.receipt_cutoff,
+                              color: Colors.black54,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: defaultPadding/4),
+                          child: Text("invoice".tr),
+                        )
+                      ],
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed("/estates");
+                      },
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Color(0xFFfef4ce),
+                            radius: 25,
+                            child: Container(
+                              height: 60,
+                              width: 60,
+                              child: Icon(
+                                BootstrapIcons.house_door,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: defaultPadding/4),
+                            child: Text("estates".tr),
+                          )
+                        ],
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed("/contracts");
+                      },
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Color(0xFFfef4ce),
+                            radius: 25,
+                            child: Container(
+                              height: 60,
+                              width: 60,
+                              child: Icon(
+                                BootstrapIcons.gear,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: defaultPadding/4),
+                            child: Text("contracts".tr),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: defaultPadding, right: defaultPadding, bottom: defaultPadding ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      "late_paiements".tr,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        fontWeight: FontWeight.w600
+                      ),
+                    ),
+                    Text(
+                      "see_all".tr,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    )
+                  ],
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: defaultPadding, right: defaultPadding, bottom: defaultPadding*5),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  primary: false,
+                  itemCount: 1,
+                  padding: EdgeInsets.only(top: 0),
+                  itemBuilder: (context, index){
+                    return Container(
+                      margin: EdgeInsets.only(bottom: defaultPadding),
+                      padding: EdgeInsets.only(left: defaultPadding, right: defaultPadding),
+                      height: 100.0,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 1,
+                        blurRadius: 5,
+                        offset: Offset(0, 5),
+                        ),
+                      ],
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(defaultRadius*2)),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(
+                            height: defaultHeight,
+                          ),
+                          Text(
+                            "Immeuble Midombo",
+                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Color(0xFF1F1F1F),
+                            ),
+                          ),
+                          SizedBox(
+                            height: defaultHeight,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                  "Paiement en retard pour".tr,
+                                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      fontSize: 12,
+                                    color: Colors.red
+                                  )
+                              ),
+                              Text(
+                                  "50 %",
+                                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      fontSize: 12,
+                                      color: Colors.red
+                                  )
+                              ),
+
+                            ],
+                          ),
+                          SizedBox(
+                            height: defaultHeight/2,
+                          ),
+                          LinearProgressIndicator(
+                            borderRadius: BorderRadius.all(Radius.circular(defaultRadius)),
+                            value: 0.5,
+                            backgroundColor: Color(0xFFF1F1F1),
+                            minHeight: defaultHeight/2,
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                )
+              ),
+
+
             ],
           ),
-
         )
       )
     ): Scaffold(

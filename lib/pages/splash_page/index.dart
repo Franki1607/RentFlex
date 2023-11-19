@@ -1,6 +1,7 @@
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rent_flex/constants.dart';
 
 import 'controllers/splash_controller.dart';
 class SplashPage extends GetWidget<SplashController> {
@@ -22,12 +23,25 @@ class SplashPage extends GetWidget<SplashController> {
               children: [
                 Expanded(
                     flex: 9,
-                    child: Center(child: Text("splash_screen".tr, style: Theme.of(context).textTheme.headline4?.copyWith(color: Colors.white, fontWeight: FontWeight.bold)))),
+                    child: Center(
+                        child: Image.asset("images/logo_white.png")
+                    )
+                ),
                 Expanded(
                     flex: 1,
                     child: Center(child: Padding(
                       padding: const EdgeInsets.only(bottom: 20),
-                      child: Text("powered_by".tr, style: Theme.of(context).textTheme.subtitle2?.copyWith(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w100),),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text("sponsored_by".tr, style: Theme.of(context).textTheme.subtitle2?.copyWith(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w100),),
+                          Padding(
+                            padding: const EdgeInsets.only(left: defaultPadding/2),
+                            child: Image.asset("images/logo_mtn.png"),
+                          )
+                        ],
+                      ),
                     ))
                 )
               ],
