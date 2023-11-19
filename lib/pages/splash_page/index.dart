@@ -24,7 +24,7 @@ class SplashPage extends GetWidget<SplashController> {
                 Expanded(
                     flex: 9,
                     child: Center(
-                        child: Image.asset("images/logo_white.png")
+                        child: Image.asset("images/logo_white.png", height: 100,)
                     )
                 ),
                 Expanded(
