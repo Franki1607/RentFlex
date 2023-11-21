@@ -15,50 +15,6 @@ class DashboardController extends GetxController {
 
   final formKey = GlobalKey<FormBuilderState>();
 
-  final isSaveLoading = false.obs;
-
-  void setSaveLoading(bool value) {
-    isSaveLoading(value);
-  }
-
   FirebaseCore firebaseCore = FirebaseCore.instance;
-  List<File> images = [];
 
-  firebase_storage.FirebaseStorage storage =
-      firebase_storage.FirebaseStorage.instance;
-
-  void pickImages() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      allowMultiple: true,
-      type: FileType.custom,
-      allowedExtensions: ['jpg', 'png', 'jpeg'],
-    );
-
-    if (result != null) {
-      images = result.paths.map((path) => File(path!)).toList();
-      update();
-      uploadImages();
-    } else {
-      // User canceled the picker
-    }
-  }
-
-  RxList<firebase_storage.UploadTask> tasks = <firebase_storage.UploadTask>[].obs;
-
-  void uploadImages() async {
-    for (var image in images) {
-      try {
-        tasks.add(uploadFile(image));
-      } catch (e) {
-        // Handle upload error
-      }
-    }
-  }
-
-  firebase_storage.UploadTask uploadFile(File file) {
-    firebase_storage.UploadTask task = storage
-        .ref('uploads/${file.path.split('/').last}')
-        .putFile(file);
-    return task;
-  }
 }

@@ -102,4 +102,13 @@ const en_US = {
   "estates": "Estates",
   "contracts": "Contracts",
   "add_property": "Add property",
+  "same_number": "This number can't be your own",
+  "Error": "Error",
+  "active_contract": "An active contract is in progress",
+  "property": "Property",
+  "property_required": "Property required",
+  "add_contract": "Add contract",
+  "start_paiement_date": "Start paiement date",
+  "no_data_tenant": "No estate assigned to you",
+  "no_data_owner": "No estate! Add to",
 };

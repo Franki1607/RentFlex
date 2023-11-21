@@ -182,16 +182,17 @@ class MoreInfoForm extends GetWidget<LoginController> {
                   decoration: InputDecoration(
                       labelText: "role".tr
                   ),
-                  initialValue: "owner",
+                  initialValue: "tenant",
                   options: [
+
+                    FormBuilderFieldOption(
+                        value: 'tenant',
+                        child: Text("tenant".tr)
+                    ),
                     FormBuilderFieldOption(
                         value: 'owner',
                         child: Text("owner".tr)
                     ),
-                    FormBuilderFieldOption(
-                        value: 'tenant',
-                        child: Text("tenant".tr)
-                    )
                   ],
                 )
               ],

@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:rent_flex/api/firebase/firebase_core.dart';
 import 'package:telephony/telephony.dart';
@@ -160,6 +161,7 @@ class LoginController extends GetxController {
       bool userCreated =await _authHelper.createDBUser(user);
 
       if(userCreated){
+        savePreferences(user);
         Get.offAllNamed("/");
       }else{
         isSaveLoading.value = false;
@@ -203,6 +205,14 @@ class LoginController extends GetxController {
       listenInBackground: false,
     );
     super.onInit();
+  }
+
+  void savePreferences(mUser.User user) async {
+    print("Saving preferences");
+    await GetStorage().write('user_first_name', user.firstName);
+    await GetStorage().write('user_last_name', user.lastName);
+    await GetStorage().write('user_role', user.role);
+    await GetStorage().write('user_photo_url', user.photoURL);
   }
 
   void navigateBack() => Get.back();

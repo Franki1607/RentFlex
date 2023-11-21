@@ -21,6 +21,8 @@ class Property{
   String other;
   List <String> photos;
   List <Contract>? contracts;
+  DateTime? lastPaymentMonth;
+  double? lastPaymentAmount;
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -45,6 +47,8 @@ class Property{
     required this.other,
     required this.photos,
     this.contracts,
+    this.lastPaymentMonth,
+    this.lastPaymentAmount,
     this.createdAt,
     this.updatedAt
   });
@@ -71,6 +75,8 @@ class Property{
       other: json['other'],
       photos: List<String>.from(json['photos']),
       contracts: json['contracts'] != null ? List<Contract>.from(json['contracts'].map((x) => Contract.fromJson(x))) : null,
+      lastPaymentMonth: json['lastPaymentMonth'] != null ? json['lastPaymentMonth'].toDate(): null,
+      lastPaymentAmount: json['lastPaymentAmount'],
       createdAt: json['createdAt'] != null ? json['createdAt'].toDate(): null,
       updatedAt: json['updatedAt'] != null ? json['updatedAt'].toDate(): null
     );
@@ -99,6 +105,8 @@ class Property{
       'other': other,
       'photos': photos,
       'contracts': contracts,
+      'lastPaymentMonth': lastPaymentMonth,
+      'lastPaymentAmount': lastPaymentAmount,
       'createdAt': createdAt,
       'updatedAt': updatedAt
     };
