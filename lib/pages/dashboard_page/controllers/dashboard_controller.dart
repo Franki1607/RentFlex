@@ -33,15 +33,17 @@ class DashboardController extends GetxController {
 
   void setMinAmount(double value) => minAmount(value);
 
-  bool checkBestMonth(DateTime month1 , DateTime month2){
-    if (month1.year == month2.year && month1.month>=month2.month) {
-      return true;
-    }else if (month1.year > month2.year) {
-      return true;
-    }else{
+  bool checkBestMonth(DateTime now, DateTime propertyDate) {
+    if(now.year==propertyDate.year && now.month <= propertyDate.month){
+      print("Mais j'envoie True");
       return false;
-
+    }else if(now.year < propertyDate.year){
+      print("Mais j'envoie True 2");
+      return false;
     }
+
+    print("Mais j'envoie False");
+    return true;
   }
 
   int checkDifferenceMonth(DateTime month1 , DateTime month2){

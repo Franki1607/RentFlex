@@ -792,12 +792,11 @@ class FirebaseCore {
 
       print("payment : $payment");
       if (payment == null) {
-
+        print("Paymenet est null et j'obtiens ${int.parse("${(amountPayed/pricePerMonth).ceil()}")}");
+        print(startMonth);
         for (int i = 0; i < int.parse("${(amountPayed/pricePerMonth).ceil()}"); i++) {
+          print("i : $i");
             if (i!=0) {
-              startMonth = startMonth.add(Duration(
-                  days: DateTime(startMonth.year, startMonth.month + 1, 0).day));
-            }else {
               startMonth = startMonth.add(Duration(
                   days: DateTime(startMonth.year, startMonth.month + 1, 0).day));
             }
@@ -833,6 +832,7 @@ class FirebaseCore {
 
         return true;
       }else{
+        startMonth = payment.monthlyDate?? DateTime.now();
         // get payment amount
         if (double.parse(payment.amount )+ amountPayed <= property.price) {
           // update payment amount
