@@ -738,7 +738,7 @@ class FirebaseCore {
       transferSubscription = mtnMomoApi.getTransferStatus(transferUid).listen((myTransferStatus) {
         print("Transfer Verification");
         print(myTransferStatus?.status);
-        if (myTransferStatus?.status != 'pending' || myTransferStatus?.status != 'ongoing'){
+        if (myTransferStatus?.status != 'PENDING' || myTransferStatus?.status != 'ONGOING'){
           // cancel subscription
           transferStatus = myTransferStatus!;
           transferSubscription.cancel();

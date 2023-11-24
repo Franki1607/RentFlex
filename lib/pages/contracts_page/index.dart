@@ -118,7 +118,7 @@ class ContractsPage extends GetWidget<ContractsController> {
                                             ],
                                           ),
                                           Row(
-                                            mainAxisAlignment: (GetStorage().read("user_role")=="owner")? MainAxisAlignment.spaceBetween: MainAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.start,
                                             children: [
                                               RichText(
                                                 text: TextSpan(
@@ -139,10 +139,37 @@ class ContractsPage extends GetWidget<ContractsController> {
                                                 ),
                                               ),
 
-                                              if (GetStorage().read("user_role")=="owner")
-                                              IconButton(onPressed: (){}, icon: Icon(BootstrapIcons.pencil_square),)
+                                              // if (GetStorage().read("user_role")=="owner")
+                                              // IconButton(onPressed: (){}, icon: Icon(BootstrapIcons.pencil_square),)
                                             ],
                                           )
+                                          // Row(
+                                          //   mainAxisAlignment: (GetStorage().read("user_role")=="owner")? MainAxisAlignment.spaceBetween: MainAxisAlignment.start,
+                                          //   children: [
+                                          //     RichText(
+                                          //       text: TextSpan(
+                                          //         children: [
+                                          //           TextSpan(
+                                          //             text: "start_paiement_date".tr+": ",
+                                          //             style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                          //               color: Colors.black87
+                                          //             )
+                                          //           ),
+                                          //           TextSpan(
+                                          //             text: "${contract.startPaiementDate.toString().split(" ")[0]} ",
+                                          //             style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                          //                 color: primaryColor
+                                          //             ),
+                                          //           ),
+                                          //         ],
+                                          //       ),
+                                          //     ),
+                                          //
+                                          //     if (GetStorage().read("user_role")=="owner")
+                                          //     IconButton(onPressed: (){}, icon: Icon(BootstrapIcons.pencil_square),)
+                                          //   ],
+                                          // )
+                                          //
                                         ],
                                       ),
                                     )

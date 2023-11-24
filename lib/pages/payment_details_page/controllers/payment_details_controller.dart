@@ -94,7 +94,7 @@ class PaymentDetailsController extends GetxController {
     final List<int> bytes = await document.save();
     document.dispose();
     //Launch file.
-    await saveAndLaunchFile(bytes, 'Invoice.pdf');
+    await saveAndLaunchFile(bytes, 'Quittance.pdf');
   }
 
   //Draws the invoice header
@@ -105,7 +105,7 @@ class PaymentDetailsController extends GetxController {
         bounds: Rect.fromLTWH(0, 0, pageSize.width, 90));
     //Draw string
     page.graphics.drawString(
-        'invoice'.tr, PdfStandardFont(PdfFontFamily.helvetica, 30),
+        'Quittance', PdfStandardFont(PdfFontFamily.helvetica, 30),
         brush: PdfBrushes.black,
         bounds: Rect.fromLTWH(25, 0, pageSize.width - 115, 90),
         format: PdfStringFormat(lineAlignment: PdfVerticalAlignment.middle));

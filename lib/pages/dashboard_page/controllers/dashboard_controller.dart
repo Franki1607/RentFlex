@@ -35,14 +35,10 @@ class DashboardController extends GetxController {
 
   bool checkBestMonth(DateTime now, DateTime propertyDate) {
     if(now.year==propertyDate.year && now.month <= propertyDate.month){
-      print("Mais j'envoie True");
       return false;
     }else if(now.year < propertyDate.year){
-      print("Mais j'envoie True 2");
       return false;
     }
-
-    print("Mais j'envoie False");
     return true;
   }
 
