@@ -152,4 +152,11 @@ const en_US = {
   "bill_to": "Bill to",
   "coming_soon": "Coming Soon",
   "coming_soon_hint": "🚀 New feature in the works! The idea came to us during the development of the current version 🚧",
+  "PAYMENT_SUCCESSUL": "Payment successful",
+  "CONTRACT_NOT_FOUND": "Contract not found",
+  "CAN_NOT_CREATE_PAYMENT_REQUEST": "Can not create payment request",
+  "INTERNAL_ERROR_PLEASE_TRY_AGAIN": "Internal error, please try again",
+  "PAYMENT_FAILED": "Payment failed",
+  "CAN_NOT_CREATE_TRANSFER_REQUEST": "Can not create transfer request",
+  "CAN_NOT_CREATE_TRANSFER": "Can not create transfer",
 };

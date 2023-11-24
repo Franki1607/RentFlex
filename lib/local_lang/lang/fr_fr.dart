@@ -152,4 +152,11 @@ const fr_FR = {
   "bill_to": "Facture de",
   "coming_soon": "Bientôt disponible",
   "coming_soon_hint": "🚀 Nouvelle Fonctionnalité en Préparation ! L'idée nous est venue lors du développemnt de la version actuelle 🚧",
+  "PAYMENT_SUCCESSUL": "Paiement réussi",
+  "CONTRACT_NOT_FOUND": "Contrat introuvable",
+  "CAN_NOT_CREATE_PAYMENT_REQUEST": "Impossible de créer une demande de paiement",
+  "INTERNAL_ERROR_PLEASE_TRY_AGAIN": "Erreur interne, veuillez réessayer",
+  "PAYMENT_FAILED": "Paiement échoué",
+  "CAN_NOT_CREATE_TRANSFER_REQUEST": "Impossible de créer une demande de transfert",
+  "CAN_NOT_CREATE_TRANSFER": "Impossible de créer un transfert",
 };
