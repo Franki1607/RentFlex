@@ -3,68 +3,67 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:rent_flex/models/contract.dart';
-import 'package:rent_flex/pages/contracts_page/forms/create_contract_form.dart';
+import 'package:rent_flex/models/payment.dart';
 import '../../constants.dart';
-import 'controllers/contracts_controller.dart';
+import 'controllers/invoice_controller.dart';
 
-class ContractsPage extends GetWidget<ContractsController> {
+class InvoicePage extends GetWidget<InvoiceController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xFFF1F1F1),
         appBar: AppBar(
-          title: Text("contracts".tr),
+          title: Text("payments".tr),
           centerTitle: true,
         ),
         floatingActionButton: (GetStorage().read("user_role")=="owner")? FloatingActionButton(
           onPressed: () {
-            Get.bottomSheet(
-              BottomSheet(
-                onClosing: () {},
-                builder: (BuildContext context) {
-                  return createContractForm();
-                }
-              )
-            );
+            // Get.bottomSheet(
+            //     BottomSheet(
+            //         onClosing: () {},
+            //         builder: (BuildContext context) {
+            //           return createContractForm();
+            //         }
+            //     )
+            // );
           },
           child: Icon(BootstrapIcons.file_earmark_plus),
         ): null,
-        body: GetBuilder<ContractsController>(
-          builder: (_) => StreamBuilder<List<Contract>>(
-            stream: controller.firebaseCore.getAllContractsStream(),
+        body: GetBuilder<InvoiceController>(
+          builder: (_) => StreamBuilder<List<Payment>>(
+            stream: controller.firebaseCore.getAllPaymentStream(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                print("Data Contracts");
+                print("Data payments");
                 print(snapshot.data);
-                List<Contract> contracts = snapshot.data!;
+                List<Payment> payments = snapshot.data!;
                 return Padding(
                   padding: const EdgeInsets.only(left: defaultPadding/2, right: defaultPadding/2),
                   child: ListView.builder(
-                    itemCount: contracts.length,
+                    itemCount: payments.length,
                     itemBuilder: (context, index) {
-                      Contract contract = contracts[index];
+                      Payment payment = payments[index];
                       return Padding(
                         padding: const EdgeInsets.only(bottom: defaultPadding/2),
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12.0),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.2),
-                                spreadRadius: 1,
-                                blurRadius: 1,
-                                offset: Offset(0, 1),
-                              ),
-                            ],
-                            color: Colors.white
+                              borderRadius: BorderRadius.circular(12.0),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.2),
+                                  spreadRadius: 1,
+                                  blurRadius: 1,
+                                  offset: Offset(0, 1),
+                                ),
+                              ],
+                              color: Colors.white
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               SizedBox(
-                                height: defaultHeight/2
+                                  height: defaultHeight/2
                               ),
                               InkWell(
                                 onTap: () {},
@@ -77,7 +76,7 @@ class ContractsPage extends GetWidget<ContractsController> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            controller.getPropertyName(contract.propertyId),
+                                            controller.getPropertyName(payment.propertyId),
                                             style: TextStyle(
                                               fontSize: 16.0,
                                               color: Colors.grey,
@@ -85,7 +84,7 @@ class ContractsPage extends GetWidget<ContractsController> {
                                             ),
                                           ),
                                           SizedBox(
-                                            height: defaultHeight/2
+                                              height: defaultHeight/2
                                           ),
                                           Row(
                                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -95,24 +94,10 @@ class ContractsPage extends GetWidget<ContractsController> {
                                                 child: Icon(BootstrapIcons.person_fill_gear),
                                               ),
                                               Text(
-                                                GetStorage().read("user_role")=="owner"?contract.tenantNumber1:contract.ownerNumber,
+                                                GetStorage().read("user_role")=="owner"?payment.uid:payment.uid,
                                                 style: TextStyle(
                                                   fontSize: 13.0,
                                                   color: Colors.grey,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: defaultHeight/2
-                                          ),
-                                          Row(
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              Text("Status: "),
-                                              Text((contract.isActive?? true)?'Actif': "Inactif",
-                                                style: TextStyle(
-                                                  color: (contract.isActive?? true)?Colors.green: Colors.red,
                                                 ),
                                               ),
                                             ],
@@ -124,13 +109,13 @@ class ContractsPage extends GetWidget<ContractsController> {
                                                 text: TextSpan(
                                                   children: [
                                                     TextSpan(
-                                                      text: "start_paiement_date".tr+": ",
-                                                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                                        color: Colors.black87
-                                                      )
+                                                        text: "start_paiement_date".tr+": ",
+                                                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                                            color: Colors.black87
+                                                        )
                                                     ),
                                                     TextSpan(
-                                                      text: "${contract.startPaiementDate.toString().split(" ")[0]} ",
+                                                      text: "${payment.monthlyDate.toString().split(" ")[0]} ",
                                                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                                           color: primaryColor
                                                       ),
@@ -140,7 +125,7 @@ class ContractsPage extends GetWidget<ContractsController> {
                                               ),
 
                                               if (GetStorage().read("user_role")=="owner")
-                                              IconButton(onPressed: (){}, icon: Icon(BootstrapIcons.pencil_square),)
+                                                IconButton(onPressed: (){}, icon: Icon(BootstrapIcons.pencil_square),)
                                             ],
                                           )
                                         ],
@@ -161,8 +146,8 @@ class ContractsPage extends GetWidget<ContractsController> {
                 return Text('Error: ${snapshot.error}');
               } else {
                 return Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
                     child: Center(child: CircularProgressIndicator())
                 );
               }

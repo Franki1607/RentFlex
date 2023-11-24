@@ -54,7 +54,7 @@ class createContractForm extends GetWidget<ContractsController> {
                       FormBuilderValidators.required(
                           errorText: "property_required".tr),
                     ]),
-                    items: controller.oroperties.value.map((e) {
+                    items: controller.properties.value.map((e) {
                       return DropdownMenuItem(
                         child: Text(e.name),
                         value: e.uid,

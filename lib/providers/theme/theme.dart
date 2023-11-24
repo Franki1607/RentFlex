@@ -11,8 +11,12 @@ class AppTheme {
     primaryColor: primaryColor,
     appBarTheme: AppBarTheme(
       color: appBarColor,
+      titleTextStyle: TextStyle(
+        color: Colors.black,
+        fontSize: 18.0,
+      ),
       iconTheme: IconThemeData(
-        color: Colors.white,
+        color: Colors.black,
       ),
     ),
     colorScheme: ColorScheme.light(

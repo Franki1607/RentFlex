@@ -7,13 +7,14 @@ class Contract {
   String tenantNumber1;
   String? tenantNumber2;
   String? tenantNumber3;
+  String ownerNumber;
   DateTime startPaiementDate;
   bool? isActive;
   List <Payment>? payments;
   DateTime? createdAt;
   DateTime? updatedAt;
 
-  Contract({required this.uid, required this.ownerId, required this.propertyId, required this.tenantNumber1, this.tenantNumber2, this.tenantNumber3, required this.startPaiementDate, this.isActive=true, this.payments,
+  Contract({required this.uid, required this.ownerId, required this.propertyId, required this.tenantNumber1, this.tenantNumber2, this.tenantNumber3, required this.ownerNumber, required this.startPaiementDate, this.isActive=true, this.payments,
   this.createdAt,
     this.updatedAt});
 
@@ -25,6 +26,7 @@ class Contract {
       'tenantNumber1': tenantNumber1,
       'tenantNumber2': tenantNumber2,
       'tenantNumber3': tenantNumber3,
+      'ownerNumber': ownerNumber,
       'startPaiementDate': startPaiementDate,
       'isActive': isActive,
       'payments': payments,
@@ -41,6 +43,7 @@ class Contract {
       tenantNumber1: json['tenantNumber1'],
       tenantNumber2: json['tenantNumber2'],
       tenantNumber3: json['tenantNumber3'],
+      ownerNumber: json['ownerNumber'],
       startPaiementDate: json['startPaiementDate'].toDate(),
       isActive: json['isActive'],
       payments: json['payments'] != null ? List<Payment>.from(json['payments'].map((x) => Payment.fromJson(x))) : null,

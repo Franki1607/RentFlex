@@ -47,17 +47,19 @@ class Token {
 
 //Model for PaymentStatus
 class PaymentStatus {
-  final String financialTransactionId;
+  final String? financialTransactionId;
   final String referenceId;
   final String status;
+  final String? reason;
 
-  PaymentStatus({required this.financialTransactionId, required this.referenceId, required this.status});
+  PaymentStatus({this.financialTransactionId, required this.referenceId, required this.status, this.reason});
 
   factory PaymentStatus.fromJson(Map<String, dynamic> json) {
     return PaymentStatus(
       financialTransactionId: json['financialTransactionId'],
       referenceId: json['referenceId'],
       status: json['status'],
+      reason: json['reason'],
     );
   }
 
@@ -66,6 +68,7 @@ class PaymentStatus {
       'financialTransactionId': financialTransactionId,
       'referenceId': referenceId,
       'status': status,
+      'reason': reason,
     };
   }
 
@@ -110,35 +113,26 @@ class RequestToPay {
 
 // Model class Transfer status
 class TransferStatus {
-  // "amount": "1000",
-  // "currency": "EUR",
-  // "financialTransactionId": "953723495",
-  // "externalId": "123333332",
-  // "payee": {
-  // "partyIdType": "MSISDN",
-  // "partyId": "+22952051277"
-  // },
-  // "payerMessage": "Test",
-  // "payeeNote": "Test",
-  // "status": "SUCCESSFUL"
   final String amount;
   final String currency;
   final String externalId;
-  final String financialTransactionId;
+  final String? financialTransactionId;
   final Payee payee;
   final String payerMessage;
   final String payeeNote;
   final String status;
+  final String? reason;
 
   TransferStatus({
     required this.amount,
     required this.currency,
     required this.externalId,
-    required this.financialTransactionId,
+    this.financialTransactionId,
     required this.payee,
     required this.payerMessage,
     required this.payeeNote,
     required this.status,
+    this.reason,
   });
 
   factory TransferStatus.fromJson(Map<String, dynamic> json) {
@@ -151,6 +145,7 @@ class TransferStatus {
       payerMessage: json['payerMessage'],
       payeeNote: json['payeeNote'],
       status: json['status'],
+      reason: json['reason'],
     );
   }
 
@@ -164,6 +159,7 @@ class TransferStatus {
       'payerMessage': payerMessage,
       'payeeNote': payeeNote,
       'status': status,
+      'reason': reason,
     };
   }
 }
@@ -205,36 +201,6 @@ class Transfer {
   }
 }
 
-// Model class for payment request
-class PaymentRequest {
-  final String amount;
-  final String currency;
-  final String externalId;
-  final Payer payer;
-  final String payerMessage;
-  final String payeeNote;
-
-  PaymentRequest({
-    required this.amount,
-    required this.currency,
-    required this.externalId,
-    required this.payer,
-    required this.payerMessage,
-    required this.payeeNote,
-  });
-
-  Map<String, dynamic> toJson() {
-    return {
-      'amount': amount,
-      'currency': currency,
-      'externalId': externalId,
-      'payer': payer.toJson(),
-      'payerMessage': payerMessage,
-      'payeeNote': payeeNote,
-    };
-  }
-}
-
 // Model class for payer
 class Payer {
   final String partyIdType;
@@ -246,66 +212,6 @@ class Payer {
     return {
       'partyIdType': partyIdType,
       'partyId': partyId,
-    };
-  }
-}
-
-// Model class for payment response
-class PaymentResponse {
-  final String transactionId;
-  final String status;
-
-  PaymentResponse({required this.transactionId, required this.status});
-
-  factory PaymentResponse.fromJson(Map<String, dynamic> json) {
-    return PaymentResponse(
-      transactionId: json['transactionId'],
-      status: json['status'],
-    );
-  }
-}
-
-// Model class for transaction status response
-class TransactionStatusResponse {
-  final String transactionId;
-  final String status;
-
-  TransactionStatusResponse({required this.transactionId, required this.status});
-
-  factory TransactionStatusResponse.fromJson(Map<String, dynamic> json) {
-    return TransactionStatusResponse(
-      transactionId: json['transactionId'],
-      status: json['status'],
-    );
-  }
-}
-
-// Model class for payment
-class Payment {
-  final String amount;
-  final String currency;
-  final String externalId;
-  final Payee payee;
-  final String payerMessage;
-  final String payeeNote;
-
-  Payment({
-    required this.amount,
-    required this.currency,
-    required this.externalId,
-    required this.payee,
-    required this.payerMessage,
-    required this.payeeNote,
-  });
-
-  Map<String, dynamic> toJson() {
-    return {
-      'amount': amount,
-      'currency': currency,
-      'externalId': externalId,
-      'payee': payee.toJson(),
-      'payerMessage': payerMessage,
-      'payeeNote': payeeNote,
     };
   }
 }

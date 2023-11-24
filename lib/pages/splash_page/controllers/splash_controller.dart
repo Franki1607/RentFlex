@@ -28,10 +28,10 @@ class SplashController extends GetxController{
     GetStorage box = GetStorage();
     if (box.read('locale') != null)
       box.read('locale') == 'en_US'
-          ? Get.updateLocale(Locale('fr', 'FR'))
-          : Get.updateLocale(Locale('en', 'US'));
+          ? Get.updateLocale(Locale('en', 'US'))
+          : Get.updateLocale(Locale('fr', 'FR'));
     else
-      Get.updateLocale(Locale('fr', 'FR'));
+      Get.updateLocale(Locale('fr', 'FR')); box.write('locale', 'fr_FR');
   }
 
   void navigateBack() => Get.back();

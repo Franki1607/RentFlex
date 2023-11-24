@@ -73,6 +73,12 @@ dependencies:
   # Uuid
   uuid: ^4.2.1
 
+  #qr code
+  qr_flutter: ^4.1.0
+
+  #flag
+  flag: ^6.0.0
+
 
 dev_dependencies:
   flutter_test:

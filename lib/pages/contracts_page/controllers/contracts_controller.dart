@@ -16,7 +16,7 @@ class ContractsController extends GetxController {
 
   final formKey = GlobalKey<FormBuilderState>();
 
-  RxList<Property> oroperties =RxList([]);
+  RxList<Property> properties =RxList([]);
 
   final isSaveLoading = false.obs;
 
@@ -25,7 +25,7 @@ class ContractsController extends GetxController {
   }
 
   void setProperties(List<Property> value) {
-    oroperties(value);
+    properties(value);
   }
 
   @override
@@ -54,6 +54,7 @@ class ContractsController extends GetxController {
           ownerId: "${firebaseCore.firebaseUser?.uid}",
           propertyId: formKey.currentState?.fields['propertyId']?.value,
           tenantNumber1: "+229"+formKey.currentState?.fields['tenantNumber1']?.value,
+          ownerNumber: firebaseCore.firebaseUser!.phoneNumber??"",
           startPaiementDate: formKey.currentState?.fields['startPaiementDate']?.value,
           isActive: true
         )
@@ -85,7 +86,7 @@ class ContractsController extends GetxController {
 
   String getPropertyName(String propertyId) {
     try {
-      return oroperties.firstWhere((element) => element.uid == propertyId).name;
+      return properties.firstWhere((element) => element.uid == propertyId).name;
     }catch (e) {
       return "...";
     }

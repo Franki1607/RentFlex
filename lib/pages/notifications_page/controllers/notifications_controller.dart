@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
 
-class TransactionController extends GetxController {
+class NotificationsController extends GetxController {
   void navigateBack() => Get.back();
 }

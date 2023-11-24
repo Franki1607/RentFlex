@@ -14,74 +14,51 @@ class BottomTabsNavigator extends GetWidget<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      left: 0,
-      right: 0,
-      bottom: 9,
-      child: Container(
+        left: 0,
+        right: 0,
+        bottom: 9,
+        child: Container(
           height: 75.0,
           child: ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(defaultRadius*2)),
             child: Obx(() {
               return BottomNavigationBar(
-                unselectedItemColor: Color(0xFF989BA1),
+                unselectedItemColor: Theme.of(context).unselectedWidgetColor,
                 selectedItemColor: Colors.black,
                 type: BottomNavigationBarType.fixed,
-                backgroundColor:greyColor,
-
-                elevation: 1.0,
+                backgroundColor: greyColor,
+                elevation: 8.0,
                 currentIndex: controller.tabIndex.value,
                 items: [
                   BottomNavigationBarItem(
-                      activeIcon: Icon(BootstrapIcons.pie_chart_fill, color: primaryColor,),
-                      icon: Padding(
-                        padding: const EdgeInsets.only(top: 6.0),
-                        child: Opacity(
-                          opacity: 0.7,
-                          child: Icon(BootstrapIcons.pie_chart),
-                        ),
-                      ),
-                      label: 'dashboard'
+                      activeIcon: controller.buildIcon(BootstrapIcons.house_gear_fill, isActive: true),
+                      icon: controller.buildIcon(BootstrapIcons.house_gear),
+                      label: 'home'.tr
                   ),
                   BottomNavigationBarItem(
-                      activeIcon: Icon(
-                        BootstrapIcons.clipboard_data_fill, color: primaryColor,),
-                      icon: Padding(
-                        padding: const EdgeInsets.only(top: 6.0),
-                        child: Opacity(
-                          opacity: 0.7,
-                          child: Icon(BootstrapIcons.clipboard_data),
-                        ),
-                      ),
-                      label: 'Transactions'),
+                      activeIcon: controller.buildIcon(BootstrapIcons.wallet_fill, isActive: true),
+                      icon: controller.buildIcon(BootstrapIcons.wallet),
+                      label: 'payments'.tr
+                  ),
                   BottomNavigationBarItem(
-                      activeIcon: Icon(
-                        BootstrapIcons.houses_fill, color: primaryColor,),
-                      icon: Padding(
-                        padding: const EdgeInsets.only(top: 6.0),
-                        child: Opacity(
-                          opacity: 0.7,
-                          child: Icon(BootstrapIcons.houses),
-                        ),
-                      ),
-                      label: 'Marketplace'),
+                      activeIcon: controller.buildIcon(BootstrapIcons.houses_fill, isActive: true),
+                      icon: controller.buildIcon(BootstrapIcons.houses),
+                      label: 'Marketplace'.tr
+                  ),
                   BottomNavigationBarItem(
-                      activeIcon: Icon(BootstrapIcons.person_fill, color: primaryColor,),
-                      icon: Padding(
-                        padding: const EdgeInsets.only(top: 6.0),
-                        child: Opacity(
-                          opacity: 0.7,
-                          child: Icon(BootstrapIcons.person),
-                        ),
-                      ),
-                      label: 'Profile'),
+                      activeIcon: controller.buildIcon(BootstrapIcons.person_fill, isActive: true),
+                      icon: controller.buildIcon(BootstrapIcons.person),
+                      label: 'profile'.tr
+                  ),
                 ],
                 onTap: (index) {
                   controller.setTabIndex(index);
                 },
+                selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
               );
             }),
-          ))
-          .paddingOnly(left: 16, right: 16, bottom: 10)
+          ),
+        ).paddingOnly(left: 16, right: 16, bottom: 10)
     );
   }
 }

@@ -23,7 +23,20 @@ class MtnMomoApi extends GetConnect {
   FirebaseCore firebaseCore= FirebaseCore.instance;
 
   // Singleton instance.
-  static final MtnMomoApi instance =  MtnMomoApi._privateConstructor();
+  //static final MtnMomoApi instance =  MtnMomoApi._privateConstructor();
+
+  static Future<MtnMomoApi> get instance async {
+    if (_instance == null) {
+      _instance = MtnMomoApi._privateConstructor();
+      await Future.delayed(Duration(seconds: 10)).timeout(Duration(seconds: 10), onTimeout: () {
+        throw Exception('NO_CONFIG');
+      });
+    }
+    return _instance!;
+  }
+
+
+  static MtnMomoApi? _instance;
 
   late StreamSubscription<MoMoApiConfig> subscription;
 
@@ -187,11 +200,8 @@ class MtnMomoApi extends GetConnect {
     return success;
   }
 
-  Future<PaymentStatus?> getPaymentStatus(String requestId) async {
-    int attempts = 0;
-    bool success = false;
-    PaymentStatus? paymentStatus;
-    do {
+  Stream<PaymentStatus?> getPaymentStatus(String requestId) async* {
+    while (true) {
       try {
         final response = await httpClient.get(
           '/collection/v2_0/payment/$requestId',
@@ -208,16 +218,13 @@ class MtnMomoApi extends GetConnect {
             throw Exception('Error ${response.status.code}: ${response.statusText}');
           }
         } else {
-          paymentStatus = PaymentStatus.fromJson(response.body);
-          success = true;
+          yield PaymentStatus.fromJson(response.body);
         }
-
-      }catch(e){
+      } catch (e) {
         print(e);
       }
-      attempts++;
-    }while(attempts < 2 && !success);
-    return paymentStatus;
+      await Future.delayed(Duration(seconds: 5)); // Attendez 5 secondes avant de réessayer
+    }
   }
 
   Future<bool> transfer (Transfer transfer, String uuid) async{
@@ -259,11 +266,8 @@ class MtnMomoApi extends GetConnect {
     return success;
   }
 
-  Future<TransferStatus?> getTransferStatus(String requestId) async {
-    int attempts = 0;
-    bool success = false;
-    TransferStatus? transferStatus;
-    do {
+  Stream<TransferStatus?> getTransferStatus(String requestId) async * {
+    while(true){
       try {
         checkBaseUrl();
         final response = await httpClient.get(
@@ -281,16 +285,14 @@ class MtnMomoApi extends GetConnect {
             throw Exception('Error ${response.status.code}: ${response.statusText}');
           }
         } else {
-          transferStatus = TransferStatus.fromJson(response.body);
-          success = true;
+          yield TransferStatus.fromJson(response.body);
         }
 
       }catch(e){
         print(e);
       }
-      attempts++;
-    }while(attempts < 2 && !success);
-    return transferStatus;
+      await Future.delayed(Duration(seconds: 5));
+    }
   }
 }
 

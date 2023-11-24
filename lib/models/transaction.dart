@@ -1,21 +1,34 @@
 class Transaction {
   String uid;
   String contractId;
+  String propertyId;
+  String paymentId;
   String transactionId;
   String amount;
-  DateTime date;
-  String status;
+  DateTime createdAt;
+  DateTime updatedAt;
 
-  Transaction({required this.uid, required this.contractId, required this.transactionId, required this.amount, required this.date, required this.status});
+  Transaction({
+    required this.uid,
+    required this.contractId,
+    required this.propertyId,
+    required this.paymentId,
+    required this.transactionId,
+    required this.amount,
+    required this.createdAt,
+    required this.updatedAt,
+  });
 
   Map<String, dynamic> toJson() {
     return {
       'uid': uid,
       'contractId': contractId,
+      'propertyId': propertyId,
+      'paymentId': paymentId,
       'transactionId': transactionId,
       'amount': amount,
-      'date': date,
-      'status': status,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt
     };
   }
 
@@ -23,10 +36,12 @@ class Transaction {
     return Transaction(
       uid: json['uid'],
       contractId: json['contractId'],
+      propertyId: json['propertyId'],
+      paymentId: json['paymentId'],
       transactionId: json['transactionId'],
       amount: json['amount'],
-      date: DateTime.parse(json['date']),
-      status: json['status'],
+      createdAt: json['createdAt'] != null ? json['createdAt'].toDate(): null,
+      updatedAt: json['updatedAt'] != null ? json['updatedAt'].toDate(): null
     );
   }
 }
