@@ -38,7 +38,7 @@ class SplashPage extends GetWidget<SplashController> {
                           Text("sponsored_by".tr, style: Theme.of(context).textTheme.subtitle2?.copyWith(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w100),),
                           Padding(
                             padding: const EdgeInsets.only(left: defaultPadding/2),
-                            child: Image.asset("images/logo_mtn.png"),
+                            child: Image.asset("images/logo_mtn.png", height: 20,),
                           )
                         ],
                       ),

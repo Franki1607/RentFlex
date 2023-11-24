@@ -100,7 +100,7 @@ const en_US = {
   "late_rent_for": "Late rent for the month of ",
   "sold": "Sold",
   "paid": "Paid",
-  "invoice": "Invoices",
+  "invoice": "Invoice",
   "gestion": "Gestion",
   "manage": "Settings",
   "late_paiements": "Late paiements",
@@ -149,4 +149,7 @@ const en_US = {
   "your_notifications": "Your notifications",
   "logout": "Logout",
   "logout_hint": "You will be logged out in RentFlex",
+  "bill_to": "Bill to",
+  "coming_soon": "Coming Soon",
+  "coming_soon_hint": "🚀 New feature in the works! The idea came to us during the development of the current version 🚧",
 };

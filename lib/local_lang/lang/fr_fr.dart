@@ -100,7 +100,7 @@ const fr_FR = {
   "late_rent_for": "Loyer en retard pour le mois de ",
   "sold": "Solde",
   "paid": "Payer",
-  "invoice": "Factures",
+  "invoice": "Facture",
   "gestion": "Gestion",
   "manage": "Réglages",
   "late_paiements": "Paiements en retard",
@@ -149,4 +149,7 @@ const fr_FR = {
   "your_notifications": "Vos notifications",
   "logout": "Se déconnecter",
   "logout_hint": "Vous serez déconnecté de RentFlex",
+  "bill_to": "Facture de",
+  "coming_soon": "Bientôt disponible",
+  "coming_soon_hint": "🚀 Nouvelle Fonctionnalité en Préparation ! L'idée nous est venue lors du développemnt de la version actuelle 🚧",
 };

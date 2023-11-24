@@ -25,6 +25,7 @@ class PaymentDetailsPage extends GetWidget<PaymentDetailsController> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     List <Transaction> transactions = snapshot.data!;
+                    controller.setTransactions(transactions);
                     print("Data transactions");
                     print(transactions);
                    return Padding(
@@ -130,12 +131,13 @@ class PaymentDetailsPage extends GetWidget<PaymentDetailsController> {
                            children: [
                              TextButton(
                                onPressed: (){
-                                 Get.showSnackbar(GetSnackBar(
-                                   title: 'Error',
-                                   message: 'Available soon',
-                                   icon: Icon(Icons.error, color: Colors.yellow),
-                                   duration: Duration(seconds: 2),
-                                 ));
+                                 controller.generatePDF();
+                                 // Get.showSnackbar(GetSnackBar(
+                                 //   title: 'Error',
+                                 //   message: 'Available soon',
+                                 //   icon: Icon(Icons.error, color: Colors.yellow),
+                                 //   duration: Duration(seconds: 2),
+                                 // ));
                                },
                                child: Row(
                                  children: [

@@ -37,7 +37,7 @@ class MarketplacePage extends GetWidget<MarketplaceController> {
                           ),
                           SizedBox(height: 10),
                           Text(
-                            'Bientôt disponible',
+                            'coming_soon'.tr,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -46,7 +46,7 @@ class MarketplacePage extends GetWidget<MarketplaceController> {
                           ),
                           SizedBox(height: 10),
                           Text(
-                            '🚀 Nouvelle Fonctionnalité en Préparation ! 🚧',
+                            'coming_soon_hint'.tr,
                             textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 16),
                           ),
